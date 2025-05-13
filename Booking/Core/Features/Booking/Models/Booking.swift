@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Booking: Identifiable, Codable, Equatable {
+struct Booking: Identifiable, Codable, Equatable, Hashable {
     var id: String
     var email: String
     var stadiumId: String

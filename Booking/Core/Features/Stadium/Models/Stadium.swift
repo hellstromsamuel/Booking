@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Stadium: Identifiable, Codable {
+struct Stadium: Identifiable, Codable, Hashable {
     var id: String
     var name: String
 }

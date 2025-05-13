@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct BookingTime: Codable, Equatable {
+struct BookingTime: Codable, Equatable, Hashable {
     var start: String; // 10:00
     var end: String; // 12:30
     var dateIso: String; // 2025-01-15

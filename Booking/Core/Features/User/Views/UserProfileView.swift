@@ -12,7 +12,7 @@ struct UserProfileView: View {
     @ObservedObject var viewModel = UserProfileViewModel()
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             Form {
                 Section(header: Text("User Info")) {
                     HStack {

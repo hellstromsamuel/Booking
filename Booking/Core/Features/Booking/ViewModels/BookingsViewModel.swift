@@ -8,13 +8,8 @@
 import Foundation
 
 class BookingsViewModel: ObservableObject {
-    @Published var bookings: [Booking] = []
-
-    func loadBookings() {
-        let sampleBookings = BookingMock.sampleBookings;
-        bookings = BookingsHelper.sortBookings(
-            direction: .ascending,
-            by: \.timeAdded,
-            from: sampleBookings)
-    }
+    @Published var bookings: [Booking] = BookingsHelper.sortBookings(
+        direction: .ascending,
+        by: \.timeAdded,
+        from: BookingMock.sampleBookings)
 }

@@ -22,18 +22,12 @@ struct BookingsHistoryView: View {
        }
     
     var body: some View {
-        NavigationView {
-            BookingsList(bookings: filteredBookings)
-                .searchable(text: $searchText)
-                .navigationTitle("Bookings")
-        }
-        .onAppear {
-            viewModel.loadBookings()
-        }
+        BookingsList(bookings: filteredBookings)
+            .searchable(text: $searchText)
     }
 }
 
-struct BookingsView_Previews: PreviewProvider {
+struct BookingsHistoryView_Previews: PreviewProvider {
     static var previews: some View {
         BookingsHistoryView()
     }

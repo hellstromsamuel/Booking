@@ -10,7 +10,6 @@ import SwiftUI
 struct MainTabView: View {
     var body: some View {
         ZStack {
-            // The main tab view content
             TabView {
                 HomeView()
                     .tabItem {
@@ -19,10 +18,17 @@ struct MainTabView: View {
                     }
                     .tag(1)
 
-                BookingsHistoryView()
+                BookingsView()
                     .tabItem {
                         Image(systemName: "clock")
                         Text("Bookings")
+                    }
+                    .tag(2)
+                
+                UserProfileView()
+                    .tabItem {
+                        Image(systemName: "person")
+                        Text("Profile")
                     }
                     .tag(2)
             }

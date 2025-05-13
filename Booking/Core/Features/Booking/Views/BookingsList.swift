@@ -12,15 +12,18 @@ struct BookingsList: View {
     
     var body: some View {
         List {
-            ForEach(bookings, id: \.id) { booking in
-                NavigationLink(destination: BookingDetailsView(booking: booking)) {
-                    BookingsListItem(booking: booking)
-                }
-                .transition(.opacity.combined(with: .move(edge: .bottom)))
-            }
-        }
-        .listStyle(.plain)
-        .animation(.default, value: bookings)
+             ForEach(bookings, id: \.id) { booking in
+                 NavigationLink(value: booking) {
+                     BookingsListItem(booking: booking)
+                 }
+                 .transition(.opacity.combined(with: .move(edge: .bottom)))
+             }
+         }
+         .listStyle(.plain)
+         .navigationDestination(for: Booking.self) { booking in
+             BookingDetailsView(booking: booking)
+         }
+         .animation(.default, value: bookings)
     }
 }
 

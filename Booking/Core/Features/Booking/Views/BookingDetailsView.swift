@@ -12,7 +12,7 @@ struct BookingDetailsView: View {
     
     var body: some View {
         List {
-        Section(header: Text("Details")) {
+            Section(header: Text("Details")) {
                 HStack {
                     Text("Title")
                         .font(.headline)

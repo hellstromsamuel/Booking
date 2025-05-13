@@ -4,35 +4,19 @@ struct HomeView: View {
     @StateObject var viewModel = HomeViewModel()
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ZStack {
                 if let user = viewModel.user {
                     List {
                         Section(header: Text("Stadiums")) {
-                            ForEach(viewModel.stadiums, id: \.id) { stadium in
-                                NavigationLink(destination: StadiumDetailsView(stadium: stadium)) {
-                                    Text(stadium.name)
-                                }
-                            }
-                        }
-                        
-                        
-                        Section(header: Text("Other Information")) {
-                            NavigationLink(destination: BookingsHistoryView()) {
-                                Text("Bookings")
-                            }
-                        }
+                           ForEach(viewModel.stadiums, id: \.id) { stadium in
+                               NavigationLink(value: stadium) {
+                                   Text(stadium.name)
+                               }
+                           }
+                       }
                     }
                     .navigationTitle("Hi, \(user.firstName)")
-                    .toolbar {
-                        ToolbarItem(placement: .navigationBarTrailing) {
-                            Button(action: {
-                                // Add action here
-                            }) {
-                                Image(systemName: "person.circle")
-                            }
-                        }
-                    }
                 } else {
                     VStack {
                         Text("Loading user data...")
@@ -43,10 +27,13 @@ struct HomeView: View {
             .onAppear {
                 viewModel.loadUserData()
             }
+            .navigationDestination(for: Stadium.self) { stadium in
+                    StadiumDetailsView(stadium: stadium)
+                }
+           
         }
     }
 }
-
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {

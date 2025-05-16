@@ -15,11 +15,12 @@ struct PrimaryButton: View {
     var controlSize: ControlSize = .regular
     var disabled: Bool = false
     var cornerRadius: CGFloat = 18
+    var padding: CGFloat = 10
 
     var body: some View {
         Button(action: action) {
             Text(text)
-                .padding(10)
+                .padding(padding)
                 .frame(maxWidth: fullWidth ? .infinity : nil)
                 .fontWeight(.semibold)
         }

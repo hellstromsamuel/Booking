@@ -1,6 +1,6 @@
 
 //
-//  SecondaryButton.swift
+//  TextButton.swift
 //  Booking
 //
 //  Created by Samuel Hellstrøm on 16/05/2025.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct SecondaryButton: View {
+struct TextButton: View {
     let text: String
     var action: () -> Void
     var fullWidth: Bool = true
@@ -24,19 +24,19 @@ struct SecondaryButton: View {
                 .frame(maxWidth: fullWidth ? .infinity : nil)
                 .fontWeight(.semibold)
         }
-        .buttonStyle(.bordered)
+        .buttonStyle(.borderless)
         .controlSize(controlSize)
         .disabled(disabled)
         .cornerRadius(cornerRadius, antialiased: true)
     }
 }
 
-struct SecondaryButtonView_Previews: PreviewProvider {
+struct TextButtonView_Previews: PreviewProvider {
     static var previews: some View {
         VStack(spacing: 20) {
-            SecondaryButton(text: "Secondary button", action: {})
-            SecondaryButton(text: "Disabled", action: {}, disabled: true)
-            SecondaryButton(text: "Non full-width", action: {}, fullWidth: false)
+            TextButton(text: "Text button", action: {})
+            TextButton(text: "Disabled", action: {}, disabled: true)
+            TextButton(text: "Non full-width", action: {}, fullWidth: false)
         }
         .padding(10)
     }

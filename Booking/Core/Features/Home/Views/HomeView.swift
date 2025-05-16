@@ -28,8 +28,8 @@ struct HomeView: View {
                 viewModel.loadUserData()
             }
             .navigationDestination(for: Stadium.self) { stadium in
-                    StadiumDetailsView(stadium: stadium)
-                }
+                StadiumView(stadium: stadium)
+            }
            
         }
     }

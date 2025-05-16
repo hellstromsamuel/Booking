@@ -10,12 +10,12 @@ import SwiftUI
 
 struct PrimaryButton: View {
     let text: String
-    var action: () -> Void
+    var action: () -> Void = {}
     var fullWidth: Bool = true
     var controlSize: ControlSize = .regular
     var disabled: Bool = false
-    var cornerRadius: CGFloat = 18
-    var padding: CGFloat = 10
+    var cornerRadius: CGFloat = 16
+    var padding: CGFloat = 8
 
     var body: some View {
         Button(action: action) {

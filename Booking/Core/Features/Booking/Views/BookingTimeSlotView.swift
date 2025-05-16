@@ -7,8 +7,7 @@
 import SwiftUI
 
 struct BookingTimeSlotView: View {
-    var timeSlot: String
-    var zone: String
+    var timeSlot: BookingTimeSlot
     var selected: Bool
     var disabled: Bool
     var action: () -> Void
@@ -16,7 +15,7 @@ struct BookingTimeSlotView: View {
     var body: some View {
         if selected {
             PrimaryButton(
-                text: timeSlot,
+                text: timeSlot.startTime,
                 action: {
                     action()
                 },
@@ -24,7 +23,7 @@ struct BookingTimeSlotView: View {
             )
         } else {
             SecondaryButton(
-                text: timeSlot,
+                text: timeSlot.startTime,
                 action: {
                     action()
                 },
@@ -56,8 +55,11 @@ struct BookingTimeSlotView_Previews: PreviewProvider {
                     }
                     
                     BookingTimeSlotView(
-                        timeSlot: "09:15",
-                        zone: "A",
+                        timeSlot: BookingTimeSlot(
+                            startTime: "09:15",
+                            endTime: "09:15",
+                            zone: "A"
+                        ),
                         selected: isSelected,
                         disabled: isDisabled,
                         action: {

@@ -8,9 +8,8 @@
 
 import SwiftUI
 
-struct BookingTimeSlotsColumn: View {
-    var zone: String
-    var timeSlots: [String] = []
+struct BookingTimeSlotsColumnView: View {
+    var column: BookingTimeSlotsColumn
     var onPressTimeSlot: (BookingTimeSlot) -> Void
     var selectedTimeSlots: [BookingTimeSlot] = []
     
@@ -29,26 +28,15 @@ struct BookingTimeSlotsColumn: View {
     
     var body: some View {
         VStack(spacing: 10) {
-            ForEach(timeSlots, id: \.self) { timeSlot in
+            ForEach(column.timeSlots, id: \.self) { timeSlot in
                 BookingTimeSlotView(
                     timeSlot: timeSlot,
-                    zone: zone,
                     selected: isSelected(
-                        timeSlot: BookingTimeSlot(
-                            startTime: timeSlot,
-                            endTime: timeSlot,
-                            zone: zone
-                        )
+                        timeSlot: timeSlot
                     ),
                     disabled: false,
                     action: {
-                        onPressTimeSlot(
-                            BookingTimeSlot(
-                                startTime: timeSlot,
-                                endTime: timeSlot,
-                                zone: zone
-                            )
-                        )
+                        onPressTimeSlot(timeSlot)
                     }
                 )
             }
@@ -56,11 +44,17 @@ struct BookingTimeSlotsColumn: View {
     }
 }
 
-struct BookingTimeSlotsColumn_Previews: PreviewProvider {
+struct BookingTimeSlotsColumnView_Previews: PreviewProvider {
     static var previews: some View {
-        BookingTimeSlotsColumn(
-            zone: "A",
-            timeSlots: TimeHelper.getTimeSlots(startTime: "08:00", endTime: "20:00", interval: 15),
+        BookingTimeSlotsColumnView(
+            column: BookingsHelper.generateTimeSlotsColumn(
+                zones: ["A"],
+                timeSlots: TimeHelper.getTimeSlots(
+                    startTime: "08:00",
+                    endTime: "20:00",
+                    interval: 15
+                )
+            )[0],
             onPressTimeSlot: { selectedTime in
                          print("Selected time: \(selectedTime)")
                      },

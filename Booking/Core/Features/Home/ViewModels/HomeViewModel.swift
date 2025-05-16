@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 class HomeViewModel: ObservableObject {
     @Published var user: User? = nil
     @Published var stadiums: [Stadium] = StadiumMock.sampleStadiums

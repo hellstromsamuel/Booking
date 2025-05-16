@@ -10,19 +10,14 @@ import SwiftUI
 struct BookingFormView: View {
     let stadium: Stadium
     
+    @StateObject var viewModel = BookingFormViewModel()
+    
     @State var showTimeSlotsSheet: Bool = false;
     @State var selectedTimeSlots: [BookingTimeSlot] = []
 
     @State private var date = Date()
     @State private var startTime: String = ""
     @State private var endTime: String = ""
-    
-    var timeSlots = TimeHelper.getTimeSlots(
-        startTime: "08:00",
-        endTime: "20:00",
-        interval: 15
-    )
-    var zones = ["A", "B", "C"]
     
     var formattedTimeText: String {
         return BookingsHelper.formatTimeText(
@@ -122,8 +117,7 @@ struct BookingFormView: View {
             NavigationStack {
                 BookingSelectTimeSlots(
                     selectedTimeSlots: selectedTimeSlots,
-                    timeSlots: timeSlots,
-                    zones: zones,
+                    columns: viewModel.columns,
                     onPressTimeSlot: { timeSlot in
                         action(timeSlot: timeSlot)
                     },
@@ -134,7 +128,9 @@ struct BookingFormView: View {
                 .navigationTitle(timeSlotsHelpText)
                 .navigationBarTitleDisplayMode(.inline)
             }
-            
+        }
+        .onAppear {
+            viewModel.loadTimeSlots(stadium: stadium)
         }
     }
 }

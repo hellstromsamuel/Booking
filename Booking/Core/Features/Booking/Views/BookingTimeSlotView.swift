@@ -13,29 +13,30 @@ struct BookingTimeSlotView: View {
     var action: () -> Void
     
     var body: some View {
-        if selected {
-            PrimaryButton(
-                text: timeSlot.startTime,
-                action: {
-                    action()
-                },
-                disabled: disabled
-            )
-        } else {
-            SecondaryButton(
-                text: timeSlot.startTime,
-                action: {
-                    action()
-                },
-                disabled: disabled
-            )
+        Button(action: {
+            action()
+        }) {
+            Text(timeSlot.startTime)
+                .fontWeight(.semibold)
+                .frame(maxWidth: .infinity, minHeight: 40, maxHeight: 40)
+                .background(
+                   RoundedRectangle(cornerRadius: 12, style: .continuous)
+                       .fill(selected ? Color.accentColor.opacity(0.2) : Color.clear)
+                )
+                .overlay(
+                    RoundedRectangle(cornerRadius: 12, style: .continuous)
+                    .stroke(selected ? Color.accentColor : Color.gray.opacity(0.4), lineWidth: 2)
+                )
         }
+        .disabled(disabled)
+        .cornerRadius(12)
+        .buttonStyle(.borderless)
     }
 }
 
 struct BookingTimeSlotView_Previews: PreviewProvider {
     struct PreviewWrapper: View {
-        @State private var isSelected: Bool = true
+        @State private var isSelected: Bool = false
         @State private var isDisabled: Bool = false
 
         var body: some View {
@@ -66,6 +67,7 @@ struct BookingTimeSlotView_Previews: PreviewProvider {
                             print("Selected time: 09:15, A")
                         }
                     )
+                    .padding()
                 }
             }
         }

@@ -33,7 +33,7 @@ struct TimeHelper {
         var timeSlots: [String] = []
         var currentDate = startDate
         
-        while currentDate <= endDate {
+        while currentDate < endDate {
             timeSlots.append(dateFormatter.string(from: currentDate))
             currentDate = Calendar.current.date(byAdding: .minute, value: interval, to: currentDate) ?? currentDate
         }

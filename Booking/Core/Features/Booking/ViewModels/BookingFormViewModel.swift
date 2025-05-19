@@ -8,20 +8,8 @@
 import Foundation
 
 class BookingFormViewModel: ObservableObject {
-    @Published var columns: [BookingTimeSlotsColumn] = []
-    
     func loadTimeSlots(stadium: Stadium) {
-        let timeSlots = TimeHelper.getTimeSlots(
-            startTime: "08:00",
-            endTime: "20:00",
-            interval: 15
-        )
-        let zones = ["A", "B", "C"]
-        
-        self.columns = BookingsHelper.generateTimeSlotsColumn(
-            zones: zones,
-            timeSlots: timeSlots
-        )
+       
     }
 }
     

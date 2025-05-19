@@ -14,12 +14,10 @@ struct BookingTimeSlotsColumnView: View {
     var selectedTimeSlots: [BookingTimeSlot] = []
     
     func isSelected(timeSlot: BookingTimeSlot) -> Bool {
-        var selectedSlot: BookingTimeSlot? {
-            selectedTimeSlots.first(
-                where: { $0.id == timeSlot.id}
-            )
-        }
-        return selectedSlot != nil
+        return BookingTimeSlotsHelper.isTimeSlotSelected(
+            timeSlot: timeSlot,
+            selectedTimeSlots: selectedTimeSlots
+        )
     }
     
     func isDisabled(timeSlot: BookingTimeSlot) -> Bool {
@@ -47,13 +45,11 @@ struct BookingTimeSlotsColumnView: View {
 struct BookingTimeSlotsColumnView_Previews: PreviewProvider {
     static var previews: some View {
         BookingTimeSlotsColumnView(
-            column: BookingsHelper.generateTimeSlotsColumn(
+            column: BookingTimeSlotsHelper.generateTimeSlotsColumns(
                 zones: ["A"],
-                timeSlots: TimeHelper.getTimeSlots(
-                    startTime: "08:00",
-                    endTime: "20:00",
-                    interval: 15
-                )
+                startTime: "10:00",
+                endTime: "20:00",
+                interval: 15
             )[0],
             onPressTimeSlot: { selectedTime in
                          print("Selected time: \(selectedTime)")

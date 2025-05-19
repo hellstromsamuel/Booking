@@ -8,9 +8,9 @@
 import Foundation
 
 struct BookingTimeSlot: Codable, Equatable, Hashable {
-    var startTime: String
-    var endTime: String
-    var zone: String
+    var startTime: String // 10:00
+    var endTime: String // 20:00
+    var zone: String // "A"
     
     var id: String {
         return startTime + endTime + zone

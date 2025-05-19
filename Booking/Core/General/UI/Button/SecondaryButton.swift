@@ -16,6 +16,7 @@ struct SecondaryButton: View {
     var disabled: Bool = false
     var cornerRadius: CGFloat = 16
     var padding: CGFloat = 8
+    var tint: Color? = nil
 
     var body: some View {
         Button(action: action) {
@@ -28,6 +29,7 @@ struct SecondaryButton: View {
         .controlSize(controlSize)
         .disabled(disabled)
         .cornerRadius(cornerRadius, antialiased: true)
+        .tint(tint)
     }
 }
 
